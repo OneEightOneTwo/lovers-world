@@ -22,13 +22,15 @@ Router.post('/', urlencodedParser,async(request, response) => {
     let { user, psw } = request.body;
     // console.log({ user, psw });
 
-    let res = await mongo.find("administrator",{user});
+    let res = await mongo.find("administrator",{user,psw});
     // console.log(res[0].user);
+    console.log(res[0])
     if(res.length>0){
         // 登录成功：发令牌
         // let _token = token.create(username);
         let result = {
             user:res[0].user,
+            id:res[0]._id,
             code:1,
             msg:'登陆成功'
         };

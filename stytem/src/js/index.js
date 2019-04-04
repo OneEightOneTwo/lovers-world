@@ -1,4 +1,12 @@
 $(function(){
+
+    // //获取本地存储
+    // let key = JSON.parse(localStorage.getItem('user'));
+    // console.log(key.user)
+
+    // $('#user').html(key.user);
+
+
     $(".meun-item").click(function () {
         $(".meun-item").removeClass("meun-item-active");
         $(this).addClass("meun-item-active");
@@ -78,6 +86,9 @@ $(function(){
         })
 
    
-
+    // //修改密码
+    // $('.btn-green').click(()=>{
+    //     let 
+    // })
 
 })
