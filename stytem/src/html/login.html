@@ -6,9 +6,10 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>登录</title>
+
 	<link rel="stylesheet" type="text/css" href="../css/styles.css">
 	<script src="../js/jquery-2.1.1.min.js" type="text/javascript"></script>
-
+	<script src="../js/common.js"></script>
 </head>
 
 <body>
@@ -57,42 +58,27 @@
 			},
 			success: function (str) {
 				// console.log(str.code);
-				let id=str.user;
+				let use = str.user;
+				let _id=str.id
+				console.log(str.id);
 				if (str.code) {
 					// console.log(1);
 					event.preventDefault();  //点击登录改变样式
 					$('form').fadeOut(500);
 					$('.wrapper').addClass('form-success');
-					// location.href = '../index.html';
-					console.log(id);
-					cookieSet("user",id,{path:"/src"})        //登录成功时把用户名存到cookie
-				}else{
+					location.href = '../index.html';
+					const info = {
+						user: use,
+						id:_id
+					};
+					localStorage.setItem('user', JSON.stringify(info));
+
+				} else {
 					alert('用户名或密码有误');
 				}
 			}
 		})
-	//存cookie的函数
-    function cookieSet(name, value, prop) {
-		//name和value是必写参数。prop是json格式的数据
-		var str = name + '=' + value; //必写的
-		//prop
-		//expires:设置失效时间
-		if(prop.expires) {
-			str += ';expires=' + prop.expires.toUTCString(); //把时间转成字符串 toUTCString
-		}
-		//prop.path :设置路径
-		if(prop.path) {
-			str += ';path=' + prop.path;
-		}
-		//设置访问权限domain
-		if(prop.domain) {
-			str += ';domain=' + prop.domain;
-		}
-		//设置：存
-		document.cookie = str;
-	}
 
-		
 	})
 </script>
 
