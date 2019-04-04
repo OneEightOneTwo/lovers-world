@@ -1,0 +1,99 @@
+﻿<!doctype html>
+<html lang="zh">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>登录</title>
+	<link rel="stylesheet" type="text/css" href="../css/styles.css">
+	<script src="../js/jquery-2.1.1.min.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+	<div class="htmleaf-container">
+		<div class="wrapper">
+			<div class="container">
+				<h1>Welcome</h1>
+
+				<form class="form">
+					<input type="text" placeholder="Username" id="text">
+					<input type="password" placeholder="Password" id="psw">
+					<button type="button" id="login-button">Login</button>
+				</form>
+			</div>
+
+			<ul class="bg-bubbles">
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+	</div>
+
+	<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';color:#000000">
+		<h1>后台管理系统</h1>
+	</div>
+</body>
+<script>
+	$('#login-button').click(function () {
+		var user = $('#text').val();  //点击登录获取内容
+		var psw = $('#psw').val()
+		$.ajax({
+			type: 'post',
+			url: '/api/login',
+
+			data: {
+				user,
+				psw
+			},
+			success: function (str) {
+				// console.log(str.code);
+				let id=str.user;
+				if (str.code) {
+					// console.log(1);
+					event.preventDefault();  //点击登录改变样式
+					$('form').fadeOut(500);
+					$('.wrapper').addClass('form-success');
+					// location.href = '../index.html';
+					console.log(id);
+					cookieSet("user",id,{path:"/src"})        //登录成功时把用户名存到cookie
+				}else{
+					alert('用户名或密码有误');
+				}
+			}
+		})
+	//存cookie的函数
+    function cookieSet(name, value, prop) {
+		//name和value是必写参数。prop是json格式的数据
+		var str = name + '=' + value; //必写的
+		//prop
+		//expires:设置失效时间
+		if(prop.expires) {
+			str += ';expires=' + prop.expires.toUTCString(); //把时间转成字符串 toUTCString
+		}
+		//prop.path :设置路径
+		if(prop.path) {
+			str += ';path=' + prop.path;
+		}
+		//设置访问权限domain
+		if(prop.domain) {
+			str += ';domain=' + prop.domain;
+		}
+		//设置：存
+		document.cookie = str;
+	}
+
+		
+	})
+</script>
+
+</html>
