@@ -22,4 +22,3 @@ ul{list-style:none;}
 .User_ratings .ratings_bars .scale{width:400px;height:13px;float:left;margin:7px 10px auto 10px;position:relative;background:url(../images/progress02.png) 0 0 no-repeat;}
 .User_ratings .ratings_bars .scale div{width:0px;position:absolute;width:0;left:0;height:13px;bottom:0;background:url(../images/progress02.png) 0 -14px no-repeat;}
 .User_ratings .ratings_bars .scale>span{width:50px;height:32px;position:absolute;left:-2px;top:-9px;cursor:pointer;background: url(../images/circle.png) no-repeat;line-height: 80px;}
-

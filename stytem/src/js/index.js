@@ -1,10 +1,26 @@
-$(function(){
+$(function () {
 
-    // //获取本地存储
-    // let key = JSON.parse(localStorage.getItem('user'));
-    // console.log(key.user)
+    //获取本地存储
+    let key = JSON.parse(localStorage.getItem('user'));
+    console.log(key)
+    if (key != null) {//判断是否在登录
+        $('#user').html(key.user);
+        $('.huan').html('欢迎您');
+        //点击退出登录  删除本地存储
+        $('.logout').click(() => {
+            localStorage.removeItem("user"); 
+            window.location.reload()
+        });
 
-    // $('#user').html(key.user);
+    } else {
+        $('#user').css('display', 'none');
+        $('.huan').html('请登录');
+        $('.logout').css('display','none');
+        $('.huan').click(() => {
+            location.href = 'html/login.html';
+        })
+    }
+
 
 
     $(".meun-item").click(function () {
@@ -25,70 +41,75 @@ $(function(){
 
 
     //点击切换页面
-    $(".meun-item").click(function(){
-        let index=$(this).index()-3;
-        $(".tab-pane").attr("class","tab-pane");
-        $(".tab-pane").eq(index).attr("class","tab-pane active");
+    $(".meun-item").click(function () {
+        let index = $(this).index() - 3;
+        $(".tab-pane").attr("class", "tab-pane");
+        $(".tab-pane").eq(index).attr("class", "tab-pane active");
     })
 
     //点击添加
-    $(".listtian").click(function(){
-        $(".listtiantan").css("display","block");
+    $(".listtian").click(function () {
+        $(".listtiantan").css("display", "block");
     })
 
     //点击修改
-    $(".listgai").click(function(){
-        $(".listgaitan").css("display","block");
+    $(".listgai").click(function () {
+        $(".listgaitan").css("display", "block");
     })
 
     //点击删除
-    $(".listsan").click(function(){
-        var index=$(this).index()-1;
-        $(".listsantan").css("display","block");
-        $(".baocun").click(function(){
-        $(".list").eq(index).remove();   
+    $(".listsan").click(function () {
+        var index = $(this).index() - 1;
+        $(".listsantan").css("display", "block");
+        $(".baocun").click(function () {
+            $(".list").eq(index).remove();
         })
     })
 
-     //添加用户
-     $(".usertian").click(function(){
-        $(".usertiantan").css("display","block");
+    //添加用户
+    $(".usertian").click(function () {
+        $(".usertiantan").css("display", "block");
     })
 
     //修改用户
-    $(".usergai").click(function(){
-        $(".usergaitan").css("display","block");
+    $(".usergai").click(function () {
+        $(".usergaitan").css("display", "block");
     })
 
     //删除用户
-    $(".usersan").click(function(){
-        var index=$(this).index()-1;
-        $(".usersantan").css("display","block");
-        $(".baocun").click(function(){
-            $(".list").eq(index).remove();   
+    $(".usersan").click(function () {
+        var index = $(this).index() - 1;
+        $(".usersantan").css("display", "block");
+        $(".baocun").click(function () {
+            $(".list").eq(index).remove();
         })
     })
 
     //点击取消
-    $(".quxiao").click(function(){
-        $(this).parent().parent().parent().parent().css("display","none");
+    $(".quxiao").click(function () {
+        $(this).parent().parent().parent().parent().css("display", "none");
     })
 
     //点击XX
-    $(".xx").click(function(){
+    $(".xx").click(function () {
         console.log(1);
-        $(this).parent().parent().parent().parent().parent().css("display","none");
+        $(this).parent().parent().parent().parent().parent().css("display", "none");
     })
 
-        //点击保存
-        $(".baocun").click(function(){
-            $(this).parent().parent().parent().parent().css("display","none");
-        })
+    //点击保存
+    $(".baocun").click(function () {
+        $(this).parent().parent().parent().parent().css("display", "none");
+    })
 
-   
-    // //修改密码
-    // $('.btn-green').click(()=>{
-    //     let 
-    // })
+
+    //修改密码
+    $('.btn-green').click(() => {
+        let
+    });
+
+    //点击退出登录  删除本地存储
+    $('.logout').click(() => {
+
+    });
 
 })
